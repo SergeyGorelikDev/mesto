@@ -1,0 +1,22 @@
+.profile {
+    padding-top: 35px;
+}
+
+@media (min-width: 300px) {
+    .profile {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .profile {
+        display: grid;
+        grid-template-columns: min-content 1fr 150px;
+        text-align: left;
+        align-items: center;
+        column-gap: 30px;
+    }
+}
