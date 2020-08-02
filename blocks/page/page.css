@@ -7,5 +7,22 @@
     max-width: 880px;
     min-width: 300px;
     margin: 0 auto;
-    padding: 0 10px;
+}
+
+@media (max-width: 880px) {
+    .page {
+        box-sizing: border-box;
+    }
+}
+
+@media (min-width: 768px) {
+    .page{
+        padding: 0 10px;
+    }
+}
+
+@media (min-width: 300px) {
+    .page {
+        padding: 0 19px;
+    }
 }

@@ -1,4 +1,4 @@
-.popup__save-button {
+.popup__submit-button {
     margin-top: 54px;
     height: 50.15px;
     color: #fff;
@@ -7,6 +7,6 @@
     opacity: 1;
 }
 
-.popup__save-button:hover {
+.popup__submit-button:hover {
     opacity: .8;
 }
