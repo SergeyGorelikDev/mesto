@@ -1,12 +1,12 @@
 let container = document.querySelector('.page');
-let popUp = container.querySelector('.popup');
 let editButton = container.querySelector('.profile__edit-button');
-let closeButton = container.querySelector('.popup__close-button');
-let inputForm = container.querySelector('.popup__input-form');
 let profileName = container.querySelector('.profile__title');
 let profileAbout = container.querySelector('.profile__subtitle');
-let nameInput = container.querySelector('.popup__input_type_name');
-let jobInput = container.querySelector('.popup__input_type_about');
+let popUp = container.querySelector('.popup');
+let closeButton = popUp.querySelector('.popup__close-button');
+let inputForm = popUp.querySelector('.popup__input-form');
+let nameInput = popUp.querySelector('.popup__input_type_name');
+let jobInput = popUp.querySelector('.popup__input_type_about');
 
 function formEditHandler() {
     nameInput.value = profileName.textContent;
@@ -27,5 +27,4 @@ function formSubmitHandler (evt) {
 
 editButton.addEventListener('click',formEditHandler);
 closeButton.addEventListener('click',formCloseHandler);
-console.log(inputForm);
 inputForm.addEventListener('submit',formSubmitHandler);
