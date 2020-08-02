@@ -1,3 +1,17 @@
 .element__like {
-    
+    background: url(../../../images/like.svg) no-repeat;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    outline: none;    
+    opacity: 1;
+    -webkit-transition: opacity .3s ease-in-out;
+    -moz-transition: opacity .3s ease-in-out;
+    -ms-transition: opacity .3s ease-in-out;
+    -o-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
+}
+.element__like:hover {
+    opacity: .6;
 }

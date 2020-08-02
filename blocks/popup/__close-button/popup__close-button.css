@@ -1,11 +1,21 @@
 .popup__close-button {
-    background: url("../../../images/close.svg");
     position: absolute;
-    top: -35px;
-    right: -35px;
-    height: 40px;
-    width: 40px;
+    top: -45px;
+    right: -45px;
+    height: 58px;
+    width: 58px;
     opacity: 1;
+    background: url(../../../images/close.svg) no-repeat;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    outline: none;
+    -webkit-transition: opacity .3s ease-in-out;
+    -moz-transition: opacity .3s ease-in-out;
+    -ms-transition: opacity .3s ease-in-out;
+    -o-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
 }
 
 .popup__close-button:hover {

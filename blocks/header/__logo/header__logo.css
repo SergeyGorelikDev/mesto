@@ -1,9 +1,9 @@
 .header__logo {
-    padding-top: 45px;
+    padding: 45px 0 40px 0;
 }
 
 @media (max-width: 767px) {
     .header__logo {
-        padding-left: 8px;
+        padding: 28px 0 31px 8px;
     }
 }

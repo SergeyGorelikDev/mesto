@@ -9,71 +9,73 @@
   <title>Место</title>
 </head>
 <body class="page">
-<header>
+<header class="header">
   <img class="header__logo" src="./images/logo.svg" alt="Место">
-  <div class="header__line"></div>
 </header>
 <main class="content">
   <section class="profile">
     <img class="profile__avatar" src="./images/avatar.jpg" alt="Жак Ив Кусто">
     <div class="profile__info">
       <h1 class="profile__title">Жак-Ив Кусто</h1>
-      <img class="profile__edit-button" src="./images/edit-button.svg" alt="кнопка редактировать">
-      <h2 class="profile__subtitle">Исследователь океана</h2>
+      <button class="profile__edit-button" type="button" aria-label="Редактировать"></button>
+      <p class="profile__subtitle">Исследователь океана</p>
     </div>
-    <div class="profile__add-button"></div>
+    <button class="profile__add-button type="button" aria-label="Добавить"></button>
+    <div class=""></div>
   </section>
   <section class="elements">
-    <div class="element">
+    <article class="element">
       <img class="element__photo" src="./images/Karachayevsk.png" alt="Карачаевск">
       <div class="element__wrap">
         <h2 class="element__title">Карачаевск</h2>
         <img class="element__like" src="./images/like.svg" alt="Сердечко">
       </div>
-    </div>
-    <div class="element">
+    </article>
+    <article class="element">
       <img class="element__photo" src="./images/Elbrus.png" alt="Гора Эльбрус">
       <div class="element__wrap">
         <h2 class="element__title">Гора Эльбрус</h2>
         <img class="element__like" src="./images/like.svg" alt="Сердечко">
       </div>
-    </div>
-    <div class="element">
+    </article>
+    <article class="element">
       <img class="element__photo" src="./images/Dombai.png" alt="Домбай">
       <div class="element__wrap">
         <h2 class="element__title">Домбай</h2>
         <img class="element__like" src="./images/like.svg" alt="Сердечко">
       </div>
-    </div>
-    <div class="element">
+    </article>
+    <article class="element">
       <img class="element__photo" src="./images/Elbrus.png" alt="Гора Эльбрус">
       <div class="element__wrap">
         <h2 class="element__title">Гора Эльбрус</h2>
         <img class="element__like" src="./images/like.svg" alt="Сердечко">
       </div>
-    </div>
-    <div class="element">
+    </article>
+    <article class="element">
       <img class="element__photo" src="./images/Dombai.png" alt="Домбай">
       <div class="element__wrap">
         <h2 class="element__title">Домбай</h2>
         <img class="element__like" src="./images/like.svg" alt="Сердечко">
       </div>
-    </div>
-    <div class="element">
+    </article>
+    <article class="element">
       <img class="element__photo" src="./images/Karachayevsk.png" alt="Карачаевск">
       <div class="element__wrap">
         <h2 class="element__title">Карачаево-Черкесия</h2>
         <img class="element__like" src="./images/like.svg" alt="Сердечко">
       </div>
-    </div>
+    </article>
   </section>
   <div class="popup">
     <div class="popup__container">
-      <div class="popup__close-button"></div>
+      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       <h2 class="popup__header">Редактировать профиль</h2>
-        <input type="text" placeholder="Имя" class="popup__input popup__input_type_name">
-        <input type="text" placeholder="О себе" class="popup__input popup__input_type_about">
-        <button class="popup__submit-button">Сохранить</button>
+      <form class="popup__input-form" name="editProfile">
+        <input type="text" placeholder="Имя" class="popup__input popup__input_type_name" name="fullname">
+        <input type="text" placeholder="О себе" class="popup__input popup__input_type_about" name="about">
+        <button class="popup__submit-button" type="submit" aria-label="Сохранить">Сохранить</button>
+      </form>
     </div>
   </div>
 </main>

@@ -1,5 +1,14 @@
+.profile__info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    column-gap: 17px;
+    
+}
+
 @media (max-width: 767px) {
     .profile__info {
         padding-top: 10px;
+        column-gap: 6px;
     }
 }

@@ -2,8 +2,7 @@
     background: #fff;
     height: 79px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
     border-radius: 0 0 10px 10px;
-    padding: 0 15px 0 21px;
 }
