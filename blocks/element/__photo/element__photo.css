@@ -1,5 +1,7 @@
 .element__photo {
     width: 282px;
     height: 282px;
-    object-fit: contain;
+    object-fit: cover;
+    opacity: .8;
+    z-index: 1;
 }

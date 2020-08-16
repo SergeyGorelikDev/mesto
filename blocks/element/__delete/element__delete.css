@@ -1,5 +1,9 @@
-.element__like {
-    background: url(../../../images/like.svg) no-repeat;
+.element__delete {
+    position: absolute;
+    z-index: 1;
+    top: 18px;
+    right: 15px;
+    background: url(../../../images/delete.svg) no-repeat;
     width: 24px;
     height: 24px;
     padding: 0;
@@ -15,6 +19,6 @@
     transition: opacity .3s ease-in-out;
 }
 
-.element__like:hover {
+.element__delete:hover {
     opacity: .4;
 }

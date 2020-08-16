@@ -23,50 +23,9 @@
     <button class="profile__add-button" type="button" aria-label="Добавить"></button>
   </section>
   <section class="elements">
-    <article class="element">
-      <img class="element__photo" src="./images/Karachayevsk.png" alt="Карачаевск">
-      <div class="element__wrap">
-        <h2 class="element__title">Карачаевск</h2>
-        <button class="element__like" type="button" aria-label="Сердечко"></button>
-      </div>
-    </article>
-    <article class="element">
-      <img class="element__photo" src="./images/Elbrus.png" alt="Гора Эльбрус">
-      <div class="element__wrap">
-        <h2 class="element__title">Гора Эльбрус</h2>
-        <button class="element__like" type="button" aria-label="Сердечко"></button>
-      </div>
-    </article>
-    <article class="element">
-      <img class="element__photo" src="./images/Dombai.png" alt="Домбай">
-      <div class="element__wrap">
-        <h2 class="element__title">Домбай</h2>
-        <button class="element__like" type="button" aria-label="Сердечко"></button>
-      </div>
-    </article>
-    <article class="element">
-      <img class="element__photo" src="./images/Elbrus.png" alt="Гора Эльбрус">
-      <div class="element__wrap">
-        <h2 class="element__title">Гора Эльбрус</h2>
-        <button class="element__like" type="button" aria-label="Сердечко"></button>
-      </div>
-    </article>
-    <article class="element">
-      <img class="element__photo" src="./images/Dombai.png" alt="Домбай">
-      <div class="element__wrap">
-        <h2 class="element__title">Домбай</h2>
-        <button class="element__like" type="button" aria-label="Сердечко"></button>
-      </div>
-    </article>
-    <article class="element">
-      <img class="element__photo" src="./images/Karachayevsk.png" alt="Карачаевск">
-      <div class="element__wrap">
-        <h2 class="element__title">Карачаево-Черкесия</h2>
-        <button class="element__like" type="button" aria-label="Сердечко"></button>
-      </div>
-    </article>
+
   </section>
-  <div class="popup">
+  <div class="popup popup_edit-profile">
     <div class="popup__container">
       <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       <h2 class="popup__header">Редактировать профиль</h2>
@@ -77,10 +36,38 @@
       </form>
     </div>
   </div>
+  <div class="popup popup_add-photo">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+      <h2 class="popup__header">Новое место</h2>
+      <form class="popup__input-form" name="editProfile">
+        <input type="text" placeholder="Название" class="popup__input popup__input_type_name" name="fullname">
+        <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link" name="about" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?">
+        <button class="popup__submit-button" type="submit" aria-label="Сохранить">Создать</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_image_viewer">
+    <div class="popup__container popup__container_image">
+      <img class="popup__photo" src="" alt="">
+      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+      <h2 class="popup__header popup__header_location_bottom"></h2>
+    </div>
+  </div>
 </main>
 <footer class="footer">
   <p class="footer__copyright">&copy;2020 Mesto Russia</p>
 </footer>  
+ <template id="element-template">
+  <article class="element">
+    <button class="element__delete" type="button" aria-label="Удалить"></button>
+    <img class="element__photo" src="" alt="">
+    <div class="element__wrap">
+      <h2 class="element__title"></h2>
+      <button class="element__like" type="button" aria-label="Сердечко"></button>
+    </div>
+  </article>
+ </template>
 <script src="./scripts/scripts.js"></script>
 </body>
 </html>
