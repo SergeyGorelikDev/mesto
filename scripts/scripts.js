@@ -62,7 +62,7 @@ function setCardListeners(photoElement)  {
     });
 }
 
-function openEditPopup(popup) {
+function setEditPopup(popup) {
     nameInput.value = profileName.textContent;
     jobInput.value = profileAbout.textContent;
     openPopup(popup);
@@ -102,7 +102,7 @@ function submitEditForm (evt) {
   }
 
 editButton.addEventListener('click', function(){
-    openEditPopup(popupProfile);
+    setEditPopup(popupProfile);
 });
 
 addButton.addEventListener('click', function(){
