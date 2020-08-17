@@ -2,7 +2,7 @@
     opacity: 0;
     display: flex;
     visibility: hidden;
-    transition: visibility .2s, opacity .1s linear;
+    transition: visibility .2s, opacity .2s linear;
 }
 .popup:before {
     position: fixed;

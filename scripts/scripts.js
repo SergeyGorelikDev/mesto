@@ -1,137 +1,125 @@
 const container = document.querySelector('.page');
-const editButton = container.querySelector('.profile__edit-button');
-const addutton = container.querySelector('.profile__add-button');
-const profileName = container.querySelector('.profile__title');
-const profileAbout = container.querySelector('.profile__subtitle');
-const elementContainer = container.querySelector(".elements");
-
-const popUpProfile = container.querySelector('.popup_edit-profile');
-const closeProfileButton = popUpProfile.querySelector('.popup__close-button');
-const inputProfileForm = popUpProfile.querySelector('.popup__input-form');
-const nameInput = popUpProfile.querySelector('.popup__input_type_name');
-const jobInput = popUpProfile.querySelector('.popup__input_type_about');
-
-const popUpPhoto = container.querySelector('.popup_add-photo');
-const closePhotoButton = popUpPhoto.querySelector('.popup__close-button');
-const inputPhotoForm = popUpPhoto.querySelector('.popup__input-form');
-
-const popUpImageViewer = container.querySelector('.popup_image_viewer');
-const closeImageViewerButton = popUpImageViewer.querySelector('.popup__close-button');
-
 const elementTemplate = container.querySelector('#element-template').content;
 
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+const editButton = container.querySelector('.profile__edit-button');
+const addButton = container.querySelector('.profile__add-button');
+const profileName = container.querySelector('.profile__title');
+const profileAbout = container.querySelector('.profile__subtitle');
+const elementsContainer = container.querySelector('.elements');
 
-const initCards = initialCards.forEach((elem) => {
-    let photoElement = elementTemplate.cloneNode(true);
-    photoElement.querySelector('.element__photo').setAttribute('src', elem.link);
-    photoElement.querySelector('.element__photo').setAttribute('alt', elem.name);
-    photoElement.querySelector('.element__title').textContent = elem.name;
-    photoListener(photoElement);
-    elementContainer.append(photoElement);
+const popupProfile = container.querySelector('.popup_edit-profile');
+const closeProfileButton = popupProfile.querySelector('.popup__close-button');
+const inputProfileForm = popupProfile.querySelector('.popup__input-form');
+const nameInput = popupProfile.querySelector('.popup__input_type_name');
+const jobInput = popupProfile.querySelector('.popup__input_type_about');
 
-});
+const popupPhoto = container.querySelector('.popup_add-photo');
+const closePhotoButton = popupPhoto.querySelector('.popup__close-button');
+const inputPhotoForm = popupPhoto.querySelector('.popup__input-form');
 
-function  photoListener(photoElement)  {
+const popupImageViewer = container.querySelector('.popup_image_viewer');
+const closeImageViewerButton = popupImageViewer.querySelector('.popup__close-button');
+
+function setPhotoAttr(element, link, name) {
+    const photoItem = element.querySelector('.element__photo');
+    photoItem.setAttribute('src', link);
+    photoItem.setAttribute('alt', name);
+    element.querySelector('.element__title').textContent = name;
+}
+
+    initialCards.forEach((elem) => {
+    const photoElement = elementTemplate.cloneNode(true);
+    setPhotoAttr(photoElement, elem.link, elem.name);
+    setCardListeners(photoElement);
+    elementsContainer.append(photoElement);
+})
+
+function likeCardHandler (evt) {
+    evt.target.classList.toggle('element__like_active');
+}
+
+function deleteCardHandler (evt) {
+    evt.target.closest('.element').remove();
+}
+
+function choosePhoto (evt) {
+    const shownPhoto = popupImageViewer.querySelector('.popup__photo')
+    shownPhoto.setAttribute('src', evt.target.getAttribute('src'));
+    shownPhoto.setAttribute('alt', evt.target.getAttribute('alt'));
+    popupImageViewer.querySelector('.popup__header_location_bottom').textContent = evt.target.getAttribute('alt');
+}
+
+function setCardListeners(photoElement)  {
     photoElement.querySelector('.element__like').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('element__like_active');
+        likeCardHandler(evt);
     });
     photoElement.querySelector('.element__delete').addEventListener('click', function (evt) {
-        const removeElement = evt.target.closest('.element');
-        removeElement.remove();
+        deleteCardHandler(evt);
     });
     photoElement.querySelector('.element__photo').addEventListener('click', function (evt) {
-        formEditHandler(popUpImageViewer);
-        popUpImageViewer.querySelector('.popup__photo').setAttribute('src', evt.target.getAttribute('src'));
-        popUpImageViewer.querySelector('.popup__photo').setAttribute('alt', evt.target.getAttribute('alt'));
-        popUpImageViewer.querySelector('.popup__header_location_bottom').textContent = evt.target.getAttribute('alt');
+        choosePhoto(evt);
+        openPopup(popupImageViewer);
     });
 }
 
-function formEditHandler(popUp) {
-    if (popUp.classList.contains('popup_edit-profile')) {
-        nameInput.value = profileName.textContent;
-        jobInput.value = profileAbout.textContent;
-    };
-    popUp.classList.add('popup_opened');
-    container.classList.add('page_overlaid');
+function openEditPopup(popup) {
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileAbout.textContent;
+    openPopup(popup);
 }
 
-function formCloseHandler(popUp) {
-    popUp.classList.remove('popup_opened');
-    container.classList.remove('page_overlaid');
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
 }
 
-function ProfileFormSubmitHandler (evt) {
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+}
+
+function submitEditForm (evt) {
     evt.preventDefault();
     if (nameInput.value && jobInput.value) {
         profileName.textContent = nameInput.value;
         profileAbout.textContent = jobInput.value;
     }
-    formCloseHandler(popUpProfile);
+    closePopup(popupProfile);
  }
 
- function PhotoFormSubmitHandler (evt) {
+ function submitPhotoForm (evt) {
      evt.preventDefault();
      const photoElement = elementTemplate.cloneNode(true);
-     const placeInput = popUpPhoto.querySelector('.popup__input_type_name');
-     const linkInput = popUpPhoto.querySelector('.popup__input_type_link');
+     const placeInput = popupPhoto.querySelector('.popup__input_type_name');
+     const linkInput = popupPhoto.querySelector('.popup__input_type_link');
+     const photoItem = photoElement.querySelector('.element__photo');
      if (placeInput.value && linkInput.value) {
-        photoElement.querySelector('.element__photo').setAttribute('src', linkInput.value);
-        photoElement.querySelector('.element__photo').setAttribute('alt', placeInput.value);
-        photoElement.querySelector('.element__title').textContent = placeInput.value;
-        photoListener(photoElement);
-        elementContainer.prepend(photoElement);
+        setPhotoAttr(photoElement, linkInput.value, placeInput.value);
+        setCardListeners(photoElement);
+        elementsContainer.prepend(photoElement);
         placeInput.value = '';
         linkInput.value = '';
      }
-     formCloseHandler(popUpPhoto);
+     closePopup(popupPhoto);
   }
 
-editButton.addEventListener("click", function(){
-    formEditHandler(popUpProfile);
+editButton.addEventListener('click', function(){
+    openEditPopup(popupProfile);
 });
 
-addutton.addEventListener("click", function(){
-    formEditHandler(popUpPhoto);
+addButton.addEventListener('click', function(){
+    openPopup(popupPhoto);
 });
 
-closeProfileButton.addEventListener("click", function(){
-    formCloseHandler(popUpProfile);
+closeProfileButton.addEventListener('click', function(){
+    closePopup(popupProfile);
 });
 
-closePhotoButton.addEventListener("click", function(){
-    formCloseHandler(popUpPhoto);
+closePhotoButton.addEventListener('click', function(){
+    closePopup(popupPhoto);
 });
 
-closeImageViewerButton.addEventListener("click", function(){
-    formCloseHandler(popUpImageViewer);
+closeImageViewerButton.addEventListener('click', function(){
+    closePopup(popupImageViewer);
 });
 
-inputProfileForm.addEventListener('submit',ProfileFormSubmitHandler);
-inputPhotoForm.addEventListener('submit',PhotoFormSubmitHandler);
+inputProfileForm.addEventListener('submit', submitEditForm);
+inputPhotoForm.addEventListener('submit', submitPhotoForm);

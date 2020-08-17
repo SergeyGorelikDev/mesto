@@ -12,6 +12,7 @@
     height: 50px;
     border: 2px solid #FFFFFF;
     box-sizing: border-box;
+    cursor: pointer;
     border-radius: 2px;
     opacity: 1;
     -webkit-transition: opacity .3s ease-in-out;

@@ -4,4 +4,7 @@
     object-fit: cover;
     opacity: .8;
     z-index: 1;
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+    display: block;
 }

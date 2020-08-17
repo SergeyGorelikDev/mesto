@@ -8,6 +8,7 @@
     color: inherit;
     outline: none;    
     opacity: 1;
+    cursor: pointer;
     -webkit-transition: opacity .3s ease-in-out;
     -moz-transition: opacity .3s ease-in-out;
     -ms-transition: opacity .3s ease-in-out;
