@@ -1,74 +1,77 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="./pages/index.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="html, css, javascript">
-  <meta name="author" content="Горелик Сергей">
-  <title>Место</title>
-</head>
-<body class="page">
-<header class="header">
-  <img class="header__logo" src="./images/logo.svg" alt="Место">
-</header>
-<main class="content">
-  <section class="profile">
-    <img class="profile__avatar" src="./images/avatar.jpg" alt="Жак Ив Кусто">
-    <div class="profile__info">
-      <h1 class="profile__title">Жак-Ив Кусто</h1>
-      <button class="profile__edit-button" type="button" aria-label="Редактировать"></button>
-      <p class="profile__subtitle">Исследователь океана</p>
-    </div>
-    <button class="profile__add-button" type="button" aria-label="Добавить"></button>
-  </section>
-  <section class="elements">
 
-  </section>
-  <div class="popup popup_edit-profile">
-    <div class="popup__container">
-      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
-      <h2 class="popup__header">Редактировать профиль</h2>
-      <form class="popup__input-form" name="editProfile">
-        <input type="text" placeholder="Имя" class="popup__input popup__input_type_name" name="fullname">
-        <input type="text" placeholder="О себе" class="popup__input popup__input_type_about" name="about">
-        <button class="popup__submit-button" type="submit" aria-label="Сохранить">Сохранить</button>
-      </form>
-    </div>
-  </div>
-  <div class="popup popup_add-photo">
-    <div class="popup__container">
-      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
-      <h2 class="popup__header">Новое место</h2>
-      <form class="popup__input-form" name="editProfile">
-        <input type="text" placeholder="Название" class="popup__input popup__input_type_name" name="fullname">
-        <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link" name="about" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?">
-        <button class="popup__submit-button" type="submit" aria-label="Сохранить">Создать</button>
-      </form>
-    </div>
-  </div>
-  <div class="popup popup_image_viewer">
-    <div class="popup__container popup__container_image">
-      <img class="popup__photo" src="" alt="">
-      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
-      <h2 class="popup__header popup__header_location_bottom"></h2>
-    </div>
-  </div>
-</main>
-<footer class="footer">
-  <p class="footer__copyright">&copy;2020 Mesto Russia</p>
-</footer>  
- <template id="element-template">
-  <article class="element">
-    <button class="element__delete" type="button" aria-label="Удалить"></button>
-    <img class="element__photo" src="" alt="">
-    <div class="element__wrap">
-      <h2 class="element__title"></h2>
-      <button class="element__like" type="button" aria-label="Сердечко"></button>
-    </div>
-  </article>
- </template>
-<script src="./scripts/initial-сards.js"></script>
-<script src="./scripts/scripts.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./pages/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="html, css, javascript">
+    <meta name="author" content="Горелик Сергей">
+    <title>Место</title>
+</head>
+
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="./images/logo.svg" alt="Место">
+    </header>
+    <main class="content">
+        <section class="profile">
+            <img class="profile__avatar" src="./images/avatar.jpg" alt="Жак Ив Кусто">
+            <div class="profile__info">
+                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                <button class="profile__edit-button" type="button" aria-label="Редактировать"></button>
+                <p class="profile__subtitle">Исследователь океана</p>
+            </div>
+            <button class="profile__add-button" type="button" aria-label="Добавить"></button>
+        </section>
+        <section class="elements">
+
+        </section>
+        <div class="popup popup_edit-profile">
+            <div class="popup__container">
+                <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+                <h2 class="popup__header">Редактировать профиль</h2>
+                <form class="popup__input-form" name="editProfile">
+                    <input type="text" placeholder="Имя" class="popup__input popup__input_type_name" name="fullname">
+                    <input type="text" placeholder="О себе" class="popup__input popup__input_type_about" name="about">
+                    <button class="popup__submit-button" type="submit" aria-label="Сохранить">Сохранить</button>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup_add-photo">
+            <div class="popup__container">
+                <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+                <h2 class="popup__header">Новое место</h2>
+                <form class="popup__input-form" name="editProfile">
+                    <input type="text" placeholder="Название" class="popup__input popup__input_type_name" name="fullname">
+                    <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link" name="about" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?">
+                    <button class="popup__submit-button" type="submit" aria-label="Сохранить">Создать</button>
+                </form>
+            </div>
+        </div>
+        <div class="popup popup_image_viewer">
+            <div class="popup__container popup__container_image">
+                <img class="popup__photo" src="" alt="">
+                <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+                <h2 class="popup__header popup__header_location_bottom"></h2>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">&copy;2020 Mesto Russia</p>
+    </footer>
+    <template id="element-template">
+    <article class="element">
+      <button class="element__delete" type="button" aria-label="Удалить"></button>
+      <img class="element__photo" src="" alt="">
+      <div class="element__wrap">
+        <h2 class="element__title"></h2>
+        <button class="element__like" type="button" aria-label="Сердечко"></button>
+      </div>
+    </article>
+  </template>
+    <script src="./scripts/initial-сards.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
+
 </html>

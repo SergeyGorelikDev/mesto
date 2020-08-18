@@ -18,7 +18,6 @@
 @import url("../blocks/element/__like/element__like.css");
 @import url("../blocks/element/__delete/element__delete.css");
 @import url("../blocks/element/__like/_active/element__like_active.css");
-@import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyright/footer__copyright.css");
 @import url("../blocks/popup/popup.css");
 @import url("../blocks/popup/__close-button/popup__close-button.css");
