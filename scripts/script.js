@@ -104,8 +104,6 @@ function submitAddCardForm(evt) {
     const linkInput = popupAddCard.querySelector('.popup__input_type_link');
     if (placeInput.value && linkInput.value) {
         const photoElement = createCard(linkInput.value, placeInput.value);
-        setPhotoAttr(photoElement, linkInput.value, placeInput.value);
-        setCardListeners(photoElement);
         elementsContainer.prepend(photoElement);
 
     }
