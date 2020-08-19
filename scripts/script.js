@@ -20,54 +20,54 @@ const inputAddCardForm = popupAddCard.querySelector('.popup__input-form');
 const popupImageViewer = container.querySelector('.popup_image_viewer');
 const closeImageViewerButton = popupImageViewer.querySelector('.popup__close-button');
 
-function likeCardHandler(evt) {
-    evt.target.classList.toggle('element__like_active');
+function likeCardHandler(likeBtn) {
+    likeBtn.classList.toggle('element__like_active');
 }
 
-function deleteCardHandler(evt) {
-    evt.target.closest('.element').remove();
+function deleteCardHandler(delBtn) {
+    delBtn.closest('.element').remove();
 }
 
-function setPhotoAttr(element, link, name) {
-    const photoItem = element.querySelector('img');
-    photoItem.setAttribute('src', link);
-    photoItem.setAttribute('alt', name);
-    element.querySelector('h2').textContent = name;
+function setImageAttr(elem, link, name) {
+    const imageItem = elem.querySelector('img');
+    imageItem.setAttribute('src', link);
+    imageItem.setAttribute('alt', name);
+    elem.querySelector('h2').textContent = name;
 }
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
 }
 
-function createImageViewverCard(photoElement) {
-    const link = photoElement.getAttribute('src');
-    const name = photoElement.getAttribute('alt');
-    setPhotoAttr(popupImageViewer, link, name);
+function openImageViewerPopup(iamgeElement) {
+    const link = iamgeElement.getAttribute('src');
+    const name = iamgeElement.getAttribute('alt');
+    setImageAttr(popupImageViewer, link, name);
     openPopup(popupImageViewer);
 }
 
-function setCardListeners(photoElement) {
-    photoElement.querySelector('.element__like').addEventListener('click', function(evt) {
-        likeCardHandler(evt);
+function setCardListeners(card) {
+    card.querySelector('.element__like').addEventListener('click', function(evt) {
+        likeCardHandler(evt.target);
     });
-    photoElement.querySelector('.element__delete').addEventListener('click', function(evt) {
-        deleteCardHandler(evt);
+    card.querySelector('.element__delete').addEventListener('click', function(evt) {
+        deleteCardHandler(evt.target);
     });
-    photoElement.querySelector('.element__photo').addEventListener('click', function(evt) {
-        createImageViewverCard(evt.target);
+    card.querySelector('.element__photo').addEventListener('click', function(evt) {
+        openImageViewerPopup(evt.target);
     });
 }
 
 function createCard(link, name) {
-    const photoElement = elementTemplate.cloneNode(true);
-    setPhotoAttr(photoElement, link, name);
-    setCardListeners(photoElement);
-    return photoElement;
+    const card = elementTemplate.cloneNode(true);
+    setImageAttr(card, link, name);
+    setCardListeners(card);
+    return card;
 }
 
 initialCards.forEach((elem) => {
-    const photoElement = createCard(elem.link, elem.name);
-    elementsContainer.append(photoElement);
+    const card = createCard(elem.link, elem.name);
+    elementsContainer.append(card);
 })
 
 function openEditProfilePopup(popup) {
@@ -89,25 +89,18 @@ function submitEditProfileForm(evt) {
     closePopup(popupEditProfile);
 }
 
-function closeAddCardPopup() {
-    for (let i = 0; i < inputAddCardForm.length; i++) {
-        if (inputAddCardForm[1].tagName == 'INPUT') {
-            inputAddCardForm[i].value = '';
-        }
-    }
-    return closePopup(popupAddCard);
-}
-
 function submitAddCardForm(evt) {
     evt.preventDefault();
     const placeInput = popupAddCard.querySelector('.popup__input_type_name');
     const linkInput = popupAddCard.querySelector('.popup__input_type_link');
     if (placeInput.value && linkInput.value) {
-        const photoElement = createCard(linkInput.value, placeInput.value);
-        elementsContainer.prepend(photoElement);
+        const card = createCard(linkInput.value, placeInput.value);
+        elementsContainer.prepend(card);
 
     }
-    closeAddCardPopup();
+    closePopup(popupAddCard);
+    placeInput.value = '';
+    linkInput.value = '';
 }
 
 editProfileButton.addEventListener('click', function() {
@@ -123,7 +116,7 @@ closeEditProfileButton.addEventListener('click', function() {
 });
 
 closeAddCardButton.addEventListener('click', function() {
-    closeAddCardPopup();
+    closePopup(popupAddCard);
 });
 
 closeImageViewerButton.addEventListener('click', function() {
