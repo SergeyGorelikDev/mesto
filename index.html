@@ -31,9 +31,9 @@
             <div class="popup__container">
                 <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
                 <h2 class="popup__header">Редактировать профиль</h2>
-                <form class="popup__input-form" name="editProfile">
-                    <input type="text" placeholder="Имя" class="popup__input popup__input_type_name" name="fullname">
-                    <input type="text" placeholder="О себе" class="popup__input popup__input_type_about" name="about">
+                <form class="popup__input-form" name="editProfile" novalidate>
+                    <input type="text" placeholder="Имя" class="popup__input popup__input_type_name" name="fullname" required>
+                    <input type="text" placeholder="О себе" class="popup__input popup__input_type_about" name="about" required>
                     <button class="popup__submit-button" type="submit" aria-label="Сохранить">Сохранить</button>
                 </form>
             </div>
@@ -42,9 +42,9 @@
             <div class="popup__container">
                 <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
                 <h2 class="popup__header">Новое место</h2>
-                <form class="popup__input-form" name="editProfile">
-                    <input type="text" placeholder="Название" class="popup__input popup__input_type_name" name="fullname">
-                    <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link" name="about" pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?">
+                <form class="popup__input-form" name="addPhoto" novalidate>
+                    <input type="text" placeholder="Название" class="popup__input popup__input_type_name" name="place" required>
+                    <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_type_link" name="link" required>
                     <button class="popup__submit-button" type="submit" aria-label="Сохранить">Создать</button>
                 </form>
             </div>
