@@ -12,6 +12,7 @@ const jobInput = inputProfileEditorForm.elements.about;
 const popupAddCard = container.querySelector('.popup_add-photo');
 const inputAddCardForm = document.forms.addPhoto;
 const popupImageViewer = container.querySelector('.popup_image_viewer');
+let submitCurrentFunction = null;
 
 function likeCardHandler(evt) {
     if (evt.target.classList.contains('element__like')) {
@@ -32,19 +33,22 @@ function setImageAttr(elem, link, name) {
     elem.querySelector('h2').textContent = name;
 }
 
-function addClosePopupListners(popup) {
-    let closeButton = popup.querySelector('.popup__close-button');
-    if (closeButton) {
-        closeButton.addEventListener('click', closePopup);
+function closePopup(evt) {
+    const classSet = evt.target.classList;
+    if (classSet.contains('popup_opened') || classSet.contains('popup__close-button') || classSet.contains('popup__submit-button')) {
+        const popUp = evt.target.closest('.popup');
+        removeClosePopupListners(popUp);
+        addOpenPoputListners();
+        popUp.classList.remove('popup_opened');
     }
 }
 
-function removeClosePopupListners(popup) {
-    let closeButton = popup.querySelector('.popup__close-button');
-    if (closeButton) {
-        closeButton.removeEventListener('click', closePopup);
-    }
+function addClosePopupListners(popup) {
+    popup.addEventListener('click', closePopup);
+}
 
+function removeClosePopupListners(popup) {
+    popup.removeEventListener('click', closePopup);
 }
 
 function openPopup(popup) {
@@ -56,13 +60,13 @@ function openPopup(popup) {
 function addOpenPoputListners() {
     elementsContainer.addEventListener('click', openImageViewerPopup);
     editProfileButton.addEventListener('click', openEditProfilePopup);
-    addCardButton.addEventListener('click', openAddCardPopup);
+    addCardButton.addEventListener('click', openPopup);
 }
 
 function removeOpenPoputListners() {
     elementsContainer.removeEventListener('click', openImageViewerPopup);
     editProfileButton.removeEventListener('click', openEditProfilePopup);
-    addCardButton.removeEventListener('click', openAddCardPopup);
+    addCardButton.removeEventListener('click', openPopup);
 }
 
 function openImageViewerPopup(evt) {
@@ -90,23 +94,11 @@ initialCards.forEach((elem) => {
 function openEditProfilePopup() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileAbout.textContent;
-    inputProfileEditorForm.addEventListener('submit', submitEditProfileForm);
-    inputProfileEditorForm.addEventListener('submit', closePopup);
     openPopup(popupEditProfile);
 }
 
 function openAddCardPopup() {
-    inputAddCardForm.addEventListener('submit', submitAddCardForm);
-    inputAddCardForm.addEventListener('submit', closePopup);
     openPopup(popupAddCard);
-
-}
-
-function closePopup(evt) {
-    const popUp = evt.target.closest('.popup');
-    removeClosePopupListners(popUp);
-    addOpenPoputListners();
-    evt.target.closest('.popup_opened').classList.remove('popup_opened');
 }
 
 function submitEditProfileForm(evt) {
@@ -115,8 +107,7 @@ function submitEditProfileForm(evt) {
         profileName.textContent = nameInput.value;
         profileAbout.textContent = jobInput.value;
     }
-    inputProfileEditorForm.removeEventListener('submit', submitEditProfileForm);
-    removeClosePopupListners(popupEditProfile);
+    //removeClosePopupListners(popupEditProfile);
 }
 
 function submitAddCardForm(evt) {
@@ -126,15 +117,12 @@ function submitAddCardForm(evt) {
     if (placeInput.value && linkInput.value) {
         const card = createCard(linkInput.value, placeInput.value);
         elementsContainer.prepend(card);
-
     }
-    inputAddCardForm.removeEventListener('submit', submitAddCardForm);
     inputAddCardForm.reset();
-    removeClosePopupListners(popupAddCard);
 }
 
 elementsContainer.addEventListener('click', openImageViewerPopup);
-
 editProfileButton.addEventListener('click', openEditProfilePopup);
-
 addCardButton.addEventListener('click', openAddCardPopup);
+inputProfileEditorForm.addEventListener('submit', submitEditProfileForm);
+inputAddCardForm.addEventListener('submit', submitAddCardForm);
