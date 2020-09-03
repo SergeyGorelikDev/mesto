@@ -33,28 +33,55 @@ function setImageAttr(elem, link, name) {
     elem.querySelector('h2').textContent = name;
 }
 
-function closePopup(evt) {
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+}
+
+function closePopupHandler(evt) {
     const classSet = evt.target.classList;
     if (classSet.contains('popup_opened') || classSet.contains('popup__close-button') || classSet.contains('popup__submit-button')) {
-        const popUp = evt.target.closest('.popup');
-        removeClosePopupListners(popUp);
+        const popup = evt.target.closest('.popup');
+        removeClosePopupListners(popup);
         addOpenPoputListners();
-        popUp.classList.remove('popup_opened');
+        closePopup(popup);
+    }
+}
+
+function keyHandler(evt) {
+    if (evt.key === 'Escape') {
+        const openedPopup = evt.currentTarget.querySelector('.popup_opened');
+        removeClosePopupListners(openedPopup);
+        addOpenPoputListners();
+        closePopup(openedPopup);
     }
 }
 
 function addClosePopupListners(popup) {
-    popup.addEventListener('click', closePopup);
+    popup.addEventListener('click', closePopupHandler);
+    container.addEventListener('keydown', keyHandler);
 }
 
 function removeClosePopupListners(popup) {
-    popup.removeEventListener('click', closePopup);
+    popup.removeEventListener('click', closePopupHandler);
+    container.removeEventListener('keydown', keyHandler);
 }
 
+const resetInputForm = (popup) => {
+    const formElement = popup.querySelector('.popup__input-form');
+    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+    const buttonElement = formElement.querySelector('.popup__submit-button');
+    inputList.forEach((inputElement) => {
+        hideInputError(formElement, inputElement);
+    });
+    toggleButtonState(inputList, buttonElement);
+};
+
 function openPopup(popup) {
+
     popup.classList.add('popup_opened');
     removeOpenPoputListners();
     addClosePopupListners(popup);
+    resetInputForm(popup);
 }
 
 function addOpenPoputListners() {
@@ -107,7 +134,6 @@ function submitEditProfileForm(evt) {
         profileName.textContent = nameInput.value;
         profileAbout.textContent = jobInput.value;
     }
-    //removeClosePopupListners(popupEditProfile);
 }
 
 function submitAddCardForm(evt) {
@@ -126,3 +152,6 @@ editProfileButton.addEventListener('click', openEditProfilePopup);
 addCardButton.addEventListener('click', openAddCardPopup);
 inputProfileEditorForm.addEventListener('submit', submitEditProfileForm);
 inputAddCardForm.addEventListener('submit', submitAddCardForm);
+window.onload = function() {
+    enableValidation(initialValidate);
+};
