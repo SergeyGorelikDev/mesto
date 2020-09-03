@@ -12,7 +12,6 @@ const jobInput = inputProfileEditorForm.elements.about;
 const popupAddCard = container.querySelector('.popup_add-photo');
 const inputAddCardForm = document.forms.addPhoto;
 const popupImageViewer = container.querySelector('.popup_image_viewer');
-let submitCurrentFunction = null;
 
 function likeCardHandler(evt) {
     if (evt.target.classList.contains('element__like')) {
@@ -71,17 +70,15 @@ const resetInputForm = (popup) => {
     const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
     const buttonElement = formElement.querySelector('.popup__submit-button');
     inputList.forEach((inputElement) => {
-        hideInputError(formElement, inputElement);
+        hideInputError(formElement, inputElement, initialValidate);
     });
-    toggleButtonState(inputList, buttonElement);
+    toggleButtonState(inputList, buttonElement, initialValidate);
 };
 
 function openPopup(popup) {
-
     popup.classList.add('popup_opened');
     removeOpenPoputListners();
     addClosePopupListners(popup);
-    resetInputForm(popup);
 }
 
 function addOpenPoputListners() {
@@ -121,10 +118,12 @@ initialCards.forEach((elem) => {
 function openEditProfilePopup() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileAbout.textContent;
+    resetInputForm(popupEditProfile);
     openPopup(popupEditProfile);
 }
 
 function openAddCardPopup() {
+    resetInputForm(popupAddCard);
     openPopup(popupAddCard);
 }
 
