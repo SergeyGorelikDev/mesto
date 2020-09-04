@@ -40,10 +40,10 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement, { inactiveButtonClass }) => {
     if (hasInvalidInput(inputList)) {
         buttonElement.classList.add(inactiveButtonClass);
-        buttonElement.setAttribute('disabled', '')
+        buttonElement.disabled = true;
     } else {
         buttonElement.classList.remove(inactiveButtonClass);
-        buttonElement.removeAttribute('disabled')
+        buttonElement.disabled = false;
     }
 };
 
@@ -56,3 +56,22 @@ const enableValidation = ({ formSelector, ...rest }) => {
         setEventListeners(formElement, rest);
     });
 };
+
+const resetInputForm = (popup, { formSelector, inputSelector, submitButtonSelector }) => {
+    const formElement = popup.querySelector(formSelector);
+    const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+    const buttonElement = formElement.querySelector(submitButtonSelector);
+    inputList.forEach((inputElement) => {
+        hideInputError(formElement, inputElement, initialValidate);
+    });
+    toggleButtonState(inputList, buttonElement, initialValidate);
+};
+
+enableValidation(initialValidate);
+
+editProfileButton.addEventListener('click', () => {
+    resetInputForm(popupEditProfile, initialValidate);
+});
+addCardButton.addEventListener('click', () => {
+    resetInputForm(popupAddCard, initialValidate);
+});
