@@ -72,6 +72,7 @@ function createCard(link, name) {
     const cardTemplate = elementTemplate.cloneNode(true);
     const card = cardTemplate.querySelector('.element');
     setImageAttr(card, link, name);
+    card.addEventListener('click', openImageViewerPopup);
     card.addEventListener('click', likeCardHandler);
     card.addEventListener('click', deleteCardHandler);
     return card;
@@ -107,7 +108,6 @@ function submitAddCardForm(evt) {
     inputAddCardForm.reset();
 }
 
-elementsContainer.addEventListener('click', openImageViewerPopup);
 editProfileButton.addEventListener('click', openEditProfilePopup);
 addCardButton.addEventListener('click', openAddCardPopup);
 inputProfileEditorForm.addEventListener('submit', submitEditProfileForm);
