@@ -81,7 +81,7 @@ function openImageViewerPopup(evt) {
 }
 
 initialCards.forEach((cardItem) => {
-    const card = new Card(cardItem.link, cardItem.name, '#element-template')
+    const card = new Card(cardItem.link, cardItem.name, '#element-template');
     const cardElement = card.generateCard();
     cardElement.querySelector('.element').addEventListener('click', openImageViewerPopup);
     elementsContainer.append(cardElement);
