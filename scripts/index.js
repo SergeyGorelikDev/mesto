@@ -16,6 +16,15 @@ const popupAddCard = container.querySelector('.popup_add-photo');
 const inputAddCardForm = document.forms.addPhoto;
 const popupImageViewer = document.querySelector('.popup_image_viewer');
 
+const validationConfig = {
+    formSelector: '.popup__input-form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit-button',
+    inactiveButtonClass: 'popup__submit-button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active'
+};
+
 function pressEscHandler(evt) {
     if (evt.key === 'Escape') {
         const openedPopup = evt.currentTarget.querySelector('.popup_opened');
