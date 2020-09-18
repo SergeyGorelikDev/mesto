@@ -1,3 +1,5 @@
+const popupImageViewer = document.querySelector('.popup__container_image');
+
 export class Card {
     constructor(link, name, templateSelector) {
         this._link = link;
@@ -13,24 +15,30 @@ export class Card {
         return cardTemplate;
     }
 
-    _setImageAttr() {
-        const imageItem = this._element.querySelector('img');
+    _setElementAttr(elemConfig) {
+        const imageItem = elemConfig.element.querySelector(elemConfig.photo);
         imageItem.setAttribute('src', this._link);
         imageItem.setAttribute('alt', this._name);
-        this._element.querySelector('h2').textContent = this._name;
+        elemConfig.element.querySelector(elemConfig.title).textContent = this._name;
     }
 
     _likeCardHandler(evt) {
-        if (evt.target.classList.contains('element__like')) {
-            evt.target.classList.toggle('element__like_active');
-        }
+        evt.target.classList.toggle('element__like_active');
     }
 
     _deleteCardHandler(evt) {
-        if (evt.target.classList.contains('element__delete')) {
-            evt.target.closest('.element').remove();
-        }
+        evt.target.closest('.element').remove();
     }
+
+    _openImageViewerPopup() {
+        const elemConfig = {
+            element: popupImageViewer,
+            photo: '.popup__photo',
+            title: '.popup__header'
+        };
+        this._setElementAttr(elemConfig);
+    }
+
     _setEventListeners() {
         this._element.querySelector('.element__like').addEventListener('click', (evt) => {
             this._likeCardHandler(evt);
@@ -39,11 +47,20 @@ export class Card {
         this._element.querySelector('.element__delete').addEventListener('click', (evt) => {
             this._deleteCardHandler(evt);
         });
+
+        this._element.querySelector('.element__photo').addEventListener('click', () => {
+            this._openImageViewerPopup();
+        });
     }
 
     generateCard() {
         this._element = this._getTemplate();
-        this._setImageAttr();
+        const elemConfig = {
+            element: this._element,
+            photo: '.element__photo',
+            title: '.element__title'
+        };
+        this._setElementAttr(elemConfig);
         this._setEventListeners();
         return this._element;
     }
