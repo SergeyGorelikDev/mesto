@@ -1,4 +1,5 @@
-const popupImageViewer = document.querySelector('.popup__container_image');
+import { openPopup, closePopup, closePopupHandler, pressEscHandler } from './utils.js'
+const popupImageViewer = document.querySelector('.popup_image_viewer');
 
 export class Card {
     constructor(link, name, templateSelector) {
@@ -37,6 +38,7 @@ export class Card {
             title: '.popup__header'
         };
         this._setElementAttr(elemConfig);
+        openPopup(popupImageViewer);
     }
 
     _setEventListeners() {

@@ -54,14 +54,19 @@ export class FormValidator {
         const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
         const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         inputList.forEach((inputElement) => {
-            this._hideInputError(inputElement);
-            this._toggleButtonState(inputList, buttonElement);
-        });
-        inputList.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
                 this._checkInputValidity(inputElement);
                 this._toggleButtonState(inputList, buttonElement);
             });
+        });
+    }
+
+    resetState() {
+        const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+        const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        inputList.forEach((inputElement) => {
+            this._hideInputError(inputElement);
+            this._toggleButtonState(inputList, buttonElement);
         });
     }
 

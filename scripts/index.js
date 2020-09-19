@@ -1,5 +1,6 @@
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
+import { openPopup, closePopup, closePopupHandler, pressEscHandler } from './utils.js'
 
 const container = document.querySelector('.page');
 const templateSelector = '#element-template';
@@ -25,25 +26,9 @@ const validationConfig = {
     errorClass: 'popup__input-error_active'
 };
 
-function pressEscHandler(evt) {
-    if (evt.key === 'Escape') {
-        const openedPopup = evt.currentTarget.querySelector('.popup_opened');
-        closePopup(openedPopup);
-    }
-}
-
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    popup.addEventListener('click', closePopupHandler);
-    container.addEventListener('keydown', pressEscHandler);
-}
-
 function createCardInstance(link, name, templateSelector) {
     const card = new Card(link, name, templateSelector);
     const newCard = card.generateCard();
-    newCard.querySelector('.element__photo').addEventListener('click', () => {
-        openPopup(popupImageViewer);
-    });
     return newCard
 }
 
@@ -52,26 +37,11 @@ initialCards.forEach((cardItem) => {
     elementsContainer.append(cardElement);
 });
 
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-    popup.removeEventListener('click', closePopupHandler);
-    container.removeEventListener('keydown', pressEscHandler);
-}
-
-function closePopupHandler(evt) {
-    const classSet = evt.target.classList;
-    if (classSet.contains('popup_opened') || classSet.contains('popup__close-button') || classSet.contains('popup__submit-button')) {
-        const popup = evt.target.closest('.popup');
-        closePopup(popup);
-    }
-}
-
 function fillEditFormFields() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileAbout.textContent;
 }
 
-fillEditFormFields();
 const editFormValidator = new FormValidator(validationConfig, inputProfileEditorForm);
 editFormValidator.enableValidation();
 
@@ -80,13 +50,13 @@ addFormValidator.enableValidation();
 
 function openEditProfilePopup() {
     fillEditFormFields();
-    editFormValidator.enableValidation();
+    editFormValidator.resetState();
     openPopup(popupEditProfile);
 }
 
 function openAddCardPopup() {
     inputAddCardForm.reset();
-    addFormValidator.enableValidation();
+    addFormValidator.resetState();
     openPopup(popupAddCard);
 }
 
