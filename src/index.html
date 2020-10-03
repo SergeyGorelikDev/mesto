@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./pages/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="html, css, javascript">
     <meta name="author" content="Горелик Сергей">
@@ -63,7 +62,7 @@
         </div>
         <div class="popup popup_image_viewer">
             <div class="popup__container popup__container_image">
-                <img class="popup__photo" src="./" alt="Фото">
+                <img class="popup__photo" src="#" alt="Фото">
                 <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
                 <h2 class="popup__header popup__header_location_bottom"></h2>
             </div>
@@ -75,23 +74,13 @@
     <template id="element-template">
     <article class="element">
       <button class="element__delete" type="button" aria-label="Удалить"></button>
-      <img class="element__photo" src="./" alt="Фото">
+      <img class="element__photo" src="#" alt="Фото">
       <div class="element__wrap">
         <h2 class="element__title"></h2>
         <button class="element__like" type="button" aria-label="Сердечко"></button>
       </div>
     </article>
   </template>
-    <script src="./scripts/initial-сards.js"></script>
-    <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/Card.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
-    <script type="module" src="./scripts/utils.js"></script>
-    <script type="module" src="./scripts/Section.js"></script>
-    <script type="module" src="./scripts/Popup.js"></script>
-    <script type="module" src="./scripts/PopupWithImage.js"></script>
-    <script type="module" src="./scripts/PopupWithForm.js"></script>
-    <script type="module" src="./scripts/UserInfo.js"></script>
 </body>
 
 </html>
