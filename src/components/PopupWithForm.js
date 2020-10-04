@@ -22,7 +22,6 @@ export class PopupWithForm extends Popup {
             this._submitForm(paramObj);
             this.close();
         });
-        super._setEventListeners();
     }
 
     close() {
