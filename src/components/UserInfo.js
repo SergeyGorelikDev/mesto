@@ -11,8 +11,8 @@ export class UserInfo {
         }
     }
 
-    setUserInfo(name, about) {
-        this._profileName.textContent = name;
-        this._profileAbout.textContent = about;
+    setUserInfo({ param1, param2 }) {
+        this._profileName.textContent = param1;
+        this._profileAbout.textContent = param2;
     }
 }

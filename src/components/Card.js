@@ -1,8 +1,9 @@
 export class Card {
-    constructor(link, name, templateSelector) {
+    constructor(link, name, handleCardClick) {
         this._name = name;
         this._link = link;
-        this._templateSelector = templateSelector;
+        this._templateSelector = '#element-template';
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -22,10 +23,10 @@ export class Card {
     }
 
     _setElementAttr(elemConfig) {
-        const imageItem = elemConfig.element.querySelector(elemConfig.photo);
+        const imageItem = this._element.querySelector(elemConfig.photo);
         imageItem.setAttribute('src', this._link);
         imageItem.setAttribute('alt', this._name);
-        elemConfig.element.querySelector(elemConfig.title).textContent = this._name;
+        this._element.querySelector(elemConfig.title).textContent = this._name;
     }
 
     _setEventListeners() {
@@ -36,11 +37,13 @@ export class Card {
         this._element.querySelector('.element__delete').addEventListener('click', (evt) => {
             this._deleteCardHandler(evt);
         });
+        this._element.querySelector('.element__photo').addEventListener('click', (evt) => {
+            this._handleCardClick(evt);
+        });
     }
     generateCard() {
         this._element = this._getTemplate();
         const elemConfig = {
-            element: this._element,
             photo: '.element__photo',
             title: '.element__title'
         };

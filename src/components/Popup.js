@@ -16,21 +16,25 @@ export class Popup {
         }
     }
 
-    setEventListeners() {
-        const container = document.querySelector('.page');
-        this._popup.addEventListener('click', (evt) => {
-            this._handleClose(evt);
-        });
-        container.addEventListener('keydown', (evt) => {
-            this._handleEscClose(evt);
-        });
+    _setEventListeners() {
+        this._clickHandler = this._handleClose.bind(this);
+        this._keydownHandler = this._handleEscClose.bind(this);
+        this._popup.addEventListener('click', this._clickHandler);
+        document.addEventListener('keydown', this._keydownHandler);
+    }
+
+    _deleteEventListeners() {
+        this._popup.removeEventListener('click', this._clickHandler);
+        document.removeEventListener('keydown', this._keydownHandler);
     }
 
     open() {
+        this._setEventListeners();
         this._popup.classList.add('popup_opened');
     }
 
     close() {
+        this._deleteEventListeners();
         this._popup.classList.remove('popup_opened');
     }
 }
