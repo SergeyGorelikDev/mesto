@@ -30,29 +30,23 @@ const validationConfig = {
     errorClass: 'popup__input-error_active'
 };
 
-function createCardInstance(link, name) {
-    const card = new Card(link, name,
-        (evt) => {
-            const cardItem = evt.target;
-            const link = cardItem.src;
-            const name = cardItem.alt;
-            imagePopup.open(link, name);
-        }
-    );
-    return card.generateCard();
+function handleCardClick(evt) {
+    const cardItem = evt.target;
+    const link = cardItem.src;
+    const name = cardItem.alt;
+    imagePopup.open(link, name);
 }
 
-function createSection(initialCards) {
-    const newSection = new Section({
-        items: initialCards,
-        renderer: (item) => {
-            const cardElement = createCardInstance(item.link, item.name);
-            newSection.addItem(cardElement);
-        }
-    }, containerSelector);
-    newSection.renderItems();
-}
-createSection(initialCards);
+const cardSection = new Section({
+    items: initialCards,
+    renderer: (item) => {
+        const newCard = new Card(item.name, item.link, handleCardClick);
+        cardSection.addItem(newCard.generateCard());
+    }
+}, containerSelector);
+cardSection.renderItems();
+
+
 
 const newUserInfo = new UserInfo(profileName, profileAbout);
 
@@ -93,12 +87,9 @@ function openEditProfilePopup() {
 }
 
 const addPopup = new PopupWithForm(popupAddCard,
-    (paramObj) => {
-        const { param1, param2 } = paramObj;
-        createSection([{
-            "name": param1,
-            "link": param2
-        }]);
+    ({ param1, param2, ...rest }) => {
+        const newCard = new Card(param1, param2, handleCardClick);
+        cardSection.addItem(newCard.generateCard());
     }
 );
 addPopup.setEventListeners();
