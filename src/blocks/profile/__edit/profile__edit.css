@@ -1,18 +1,21 @@
-.popup__submit-button {
-    margin-top: 48px;
-    height: 50.15px;
-    color: #fff;
-    background: #000000;
-    border-radius: 2px;
-    opacity: 1;
+.profile__edit {
+    position: absolute;
+    background: url(../../../images/update.svg) no-repeat;
+    background-position: center;
+    background-color: #000;
     padding: 0;
     border: none;
     font: inherit;
+    color: inherit;
     outline: none;
     cursor: pointer;
-    font-size: 18px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
     width: 100%;
-    line-height: 1.2;
+    object-fit: none;
+    opacity: 0;
     -webkit-transition: opacity .3s ease-in-out;
     -moz-transition: opacity .3s ease-in-out;
     -ms-transition: opacity .3s ease-in-out;
@@ -20,6 +23,6 @@
     transition: opacity .3s ease-in-out;
 }
 
-.popup__submit-button:hover {
+.profile__edit:hover {
     opacity: .8;
 }
