@@ -33,6 +33,10 @@ export class Api {
             });
     }
 
+    getAllNeededData() {
+        return Promise.all([this.getInformation(), this.getInitialCards()]);
+    }
+
     updateInformation({ name, about }) {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-16/users/me', {
             method: 'PATCH',

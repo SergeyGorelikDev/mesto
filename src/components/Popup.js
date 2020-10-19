@@ -18,23 +18,17 @@ export class Popup {
         }
     }
 
-    _setEventListeners() {
+    setEventListeners() {
         this._popup.addEventListener('click', this._clickHandler);
-        document.addEventListener('keydown', this._keydownHandler);
-    }
-
-    _deleteEventListeners() {
-        this._popup.removeEventListener('click', this._clickHandler);
-        document.removeEventListener('keydown', this._keydownHandler);
     }
 
     open() {
-        this._setEventListeners();
+        document.addEventListener('keydown', this._keydownHandler);
         this._popup.classList.add('popup_opened');
     }
 
     close() {
-        this._deleteEventListeners();
+        document.removeEventListener('keydown', this._keydownHandler);
         this._popup.classList.remove('popup_opened');
     }
 }
