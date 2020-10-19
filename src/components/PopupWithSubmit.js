@@ -11,7 +11,6 @@ export class PopupWithSubmit extends Popup {
         this._inputForm.addEventListener('submit', (evt) => {
             evt.preventDefault();
             this._delete(this.image);
-            super.close();
         });
     }
 
