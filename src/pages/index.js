@@ -67,9 +67,10 @@ const confirmPopup = new PopupWithSubmit(popupConfirm, {
 confirmPopup.setEventListeners();
 
 const imagePopup = new PopupWithImage(popupImageViewer);
+imagePopup.setEventListeners();
 
-function renderLoading(popupEditProfile, isLoading) {
-    const popup = document.querySelector(popupEditProfile);
+function renderLoading(popupSelector, isLoading) {
+    const popup = document.querySelector(popupSelector);
     const sumbitButton = popup.querySelector('.popup__submit-button');
     if (isLoading) {
         sumbitButton.textContent = 'Сохранение...'
