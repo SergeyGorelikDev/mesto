@@ -19,6 +19,7 @@ export class Popup {
     }
 
     setEventListeners() {
+        alert(this._popup.classList);
         this._popup.addEventListener('click', this._clickHandler);
     }
 

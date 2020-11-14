@@ -270,6 +270,7 @@ api.getAllNeededData()
 
 function handleDeleteIconClick(evt) {
     evt.target.closest('.element').remove();
+    confirmPopup.close();
 }
 
 const editFormValidator = new FormValidator(validationConfig, inputProfileEditorForm);
